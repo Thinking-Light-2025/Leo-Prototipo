@@ -1,7 +1,7 @@
 ---------- COMO BAIXAR O PROJETO ----------
                                                                                                                     
 1º COMANDOS NO PROMPT                                                           
-2º git clone https://github.com/lucym2008/06-03___PROTOTIPO.git                                                          
+2º git clone https://github.com/Thinking-Light-2025/Leo-Prototipo.git                                                         
 3º cd Go-2-Work                                                          
 4º npm install                                                          
 5º code .                                                          

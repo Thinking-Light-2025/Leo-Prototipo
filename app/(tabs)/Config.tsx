@@ -1,10 +1,10 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ViewBack1, ViewBack2 } from '@/src/components/objects';
 import { colors } from '@/src/components/global';
 import { height, width } from '@/src/firebase/functions/interface';
 import { AntDesign } from '@expo/vector-icons';
+import { TxtInput, ViewBack1, ViewBack2 } from '@/src/components/objects';
 
 export default function Config() {
   return (
@@ -13,26 +13,35 @@ export default function Config() {
         <Text style={styles.Title}>Configurações</Text>
         <Text style={styles.subTitle}>Personalize sua experiençia</Text>
 
-        <ViewBack1>
+        <View style={styles.ViewBack}>
+              <Text style={styles.ViewBack2_Title}>Suporte</Text>
 
-              <ViewBack2>
-                  <Text style={styles.ViewBack2_Title}>Suporte</Text>
+              <View style={styles.ViewBack2_area}>
+                  <Text style={styles.ViewBack2_area_text}>Sobre nos</Text>
+                  <AntDesign name="caretright" size={24} colors={colors.amarelo2} />
+              </View>
+              <View style={styles.ViewBack2_area}>
+                  <Text style={styles.ViewBack2_area_text}>Brilho</Text>
+                  <AntDesign name="caretright" size={24} colors={colors.amarelo2} />
+              </View>
+              <View style={styles.ViewBack2_area}>
+                  <Text style={styles.ViewBack2_area_text}>Enviar feedBack</Text>
+                  <AntDesign name="caretright" size={24} colors={colors.amarelo2} />
+              </View>
+        </View> 
 
-                  <View style={styles.ViewBack2_area}>
-                      <Text style={styles.ViewBack2_area_text}>Sobre nos</Text>
-                      <AntDesign name="caretright" size={24} colors={colors.amarelo2} />
-                  </View>
-                  <View style={styles.ViewBack2_area}>
-                      <Text style={styles.ViewBack2_area_text}>Brilho</Text>
-                      <AntDesign name="caretright" size={24} colors={colors.amarelo2} />
-                  </View>
-                  <View style={styles.ViewBack2_area}>
-                      <Text style={styles.ViewBack2_area_text}>Enviar feedBack</Text>
-                      <AntDesign name="caretright" size={24} colors={colors.amarelo2} />
-                  </View>
-              </ViewBack2>
+        <View style={styles.ViewBack}>
+              <Text style={styles.ViewBack2_Title}>Mude sua conta</Text>
 
-        </ViewBack1>
+            <View style={styles.boxsInput}>
+              <TxtInput></TxtInput>
+              <TxtInput></TxtInput>
+              <TxtInput></TxtInput>
+              <TxtInput></TxtInput>
+              <TxtInput></TxtInput>
+            </View>
+
+        </View> 
 
     </View>
   )
@@ -58,23 +67,38 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
+  ViewBack: {
+    width: '90%',
+    minHeight: 55,
+    alignItems: 'center',
+    backgroundColor: colors.fundo2,
+    borderRadius: 15,
+    padding: 15,
+    marginBottom: 30,
+  },
   ViewBack2_Title: {
     fontSize: 34,
-    color: colors.amarelo2,
+    color: colors.tituloBranco,
     fontWeight: '500',
+  },
+  boxsInput: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'space-around'
   },
   ViewBack2_area: {
     width: width * 0.8,
-    height: 40,
+    height: 50,
     marginTop: 15,
-    // backgroundColor: colors.cinza,
-    justifyContent: 'space-around',
+    backgroundColor: colors.cinza,
+    justifyContent: 'space-between',
+    alignItems: 'center',
     flexDirection: 'row',
     borderRadius: 10,
-    padding: 5,
+    paddingInline: 45,
   },
   ViewBack2_area_text: {
     fontSize: 18,
-    color: colors.amarelo2,
+    color: colors.tituloBranco,
   },
 }) 

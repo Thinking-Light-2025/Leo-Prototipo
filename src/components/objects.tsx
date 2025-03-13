@@ -1,7 +1,7 @@
 import { TouchableOpacity, TouchableOpacityProps } from "react-native"
 import { colors } from "./global"
 import { TextInput, TextInputProps } from "react-native"
-import { width } from "../firebase/functions/interfaces"
+import { width } from "../firebase/functions/interface"
 
 export function Botão({ ...rest }: TouchableOpacityProps) {
   return (
@@ -79,12 +79,11 @@ export function TxtInput({ ...rest }: TextInputProps) {
       style={{
         width: '90%',
         height: 55,
-        paddingLeft: 30,
         borderColor: colors.amarelo2,
         borderWidth: 1.2,
         borderRadius: 8,
         fontSize: 16,
-
+        
       }}
       {...rest}
     />
@@ -105,6 +104,37 @@ export function TextArea({ ...rest }: TextInputProps) {
         padding: 20, // Espaçamento interno
         textAlignVertical: 'center', // Alinha o texto no topo da área de texto
         fontSize: 16, // Tamanho do texto
+      }}
+      {...rest}
+    />
+  )
+}
+
+
+export function ViewBack1({ ...rest }: TextInputProps) {
+  return (
+    <TextInput
+      style={{
+        width: '90%',
+        minHeight: 55,
+        alignItems: 'center',
+        backgroundColor: colors.cinza,
+        borderRadius: 8,
+      }}
+      {...rest}
+    />
+  )
+}
+
+export function ViewBack2({ ...rest }: TextInputProps) {
+  return (
+    <TextInput
+      style={{
+        width: '90%',
+        minHeight: 55,
+        alignItems: 'center',
+        backgroundColor: colors.cinza,
+        borderRadius: 8,
       }}
       {...rest}
     />

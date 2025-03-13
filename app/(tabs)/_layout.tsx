@@ -72,7 +72,7 @@ export default function Layout() {
           }}  
         />
         <Drawer.Screen 
-          name="CreateFreelancerJob"
+          name="createFreelancerJob"
           options={{
             title: "Criar serviços freelancer",
             headerTitleStyle: {

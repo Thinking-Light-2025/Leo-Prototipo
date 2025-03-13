@@ -55,7 +55,7 @@ export default function Index() {
           </BotãoInicio>
         </View>
 
-        <Link href={'/(tabs)/Home/Home'} style={styles.linkText}>
+        <Link href={'/(tabs)/Config'} style={styles.linkText}>
           Entrar em uma conta
         </Link>
       </View>

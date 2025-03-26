@@ -1,0 +1,49 @@
+import React, { useState } from 'react';
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from './firebase'; // Importa a configuração do Firebase
+
+const UpdateField = () => {
+  const [docId, setDocId] = useState('');
+  const [fieldName, setFieldName] = useState('');
+  const [newValue, setNewValue] = useState('');
+
+  const handleUpdate = async () => {
+    try {
+      const docRef = doc(db, 'sua_colecao', docId); // Substitua 'sua_colecao' pelo nome da sua coleção
+      await updateDoc(docRef, {
+        [fieldName]: newValue
+      });
+      alert('Campo atualizado com sucesso!');
+    } catch (error) {
+      console.error("Erro ao atualizar o documento: ", error);
+      alert('Erro ao atualizar o documento');
+    }
+  };
+
+  return (
+    <div>
+      <h2>Atualizar Campo</h2>
+      <input
+        type="text"
+        placeholder="ID do Documento"
+        value={docId}
+        onChange={(e) => setDocId(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Nome do Campo"
+        value={fieldName}
+        onChange={(e) => setFieldName(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Novo Valor"
+        value={newValue}
+        onChange={(e) => setNewValue(e.target.value)}
+      />
+      <button onClick={handleUpdate}>Atualizar</button>
+    </div>
+  );
+};
+
+export default UpdateField;

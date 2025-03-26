@@ -39,20 +39,24 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topContainer}></View>
 
       <View style={styles.bottomContainer}>
-        <View style={styles.areaButton}>
-          <BotãoInicio onPress={handleLoginPress}>
-            <Text style={styles.buttonText}>
-              Entre na sua conta              
-            </Text>
-          </BotãoInicio>
-          <BotãoInicio onPress={handleCreateAccountPress}>
-            <Text style={styles.buttonText}>
-              Crie sua conta
-            </Text>
-          </BotãoInicio>
+        <Text style={styles.Title}>Go 2 Work</Text>
+        <Text style={styles.subTitle}>Criado pela Thinking Light</Text>
+
+        <View style={styles.viewButton}>
+            <View style={styles.areaButton}>
+              <View style={styles.buttonLogin} onPress={handleLoginPress}>
+                <Text style={styles.buttonText}>
+                  Entre na sua conta              
+                </Text>
+              </View>
+              <View style={styles.buttonCreate} onPress={handleCreateAccountPress}>
+                <Text style={styles.buttonText2}>
+                  Crie sua conta
+                </Text>
+              </View>
+            </View>
         </View>
 
         <Link href={'/(tabs)/Home/Home'} style={styles.linkText}>
@@ -68,37 +72,66 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#242424'
+    backgroundColor: colors.preto
   },
-  loadingContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#242424'
+  Title: {
+    fontSize: 50,
+    color: colors.amarelo2,
+    fontWeight: '700'
   },
-  loadingText: {
-    color: '#fff',
-    marginTop: 10,
+  subTitle: {
     fontSize: 18,
-  },
-  topContainer: {
-    height: height * 0.6
+    color: colors.tituloBranco,
   },
   bottomContainer: {
-    width: width * 1,
-    height: height * 0.4,
+    width: width * 0.9,
+    padding: 20,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    // backgroundColor: 'red'
   },
   areaButton: {
-    width: width * 1,
-    height: 180,
+    width: width * 0.9,
+    height: 160,
     justifyContent: 'space-around',
     alignItems: 'center'
   },
   buttonText: {
     fontSize: 20,
     color: colors.preto,
+    fontWeight: '500',
+  },
+  buttonText2: {
+    fontSize: 20,
+    color: colors.amarelo2,
+    fontWeight: '500',
+  },
+  viewButton: {
+    marginTop: 40,
+    alignItems: 'center',
+    backgroundColor: colors.cinza,
+    justifyContent: 'center',
+    borderRadius: 20,
+    height: 200,
+  },
+  buttonLogin: {
+    width: '90%',
+    height: 60,
+    backgroundColor: colors.amarelo2,
+    borderRadius: 20,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  buttonCreate: {
+    width: '90%',
+    height: 60,
+    borderRadius: 20,
+    borderWidth: 3,
+    borderColor: colors.amarelo2,
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
   },
   linkText: {
     fontSize: 18,

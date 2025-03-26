@@ -1,12 +1,31 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { colors } from '@/src/components/global';
 import { TxtInput, Botão } from '@/src/components/objects';
-import { height, width } from '@/src/firebase/functions/interface';
+import { height, verification, width } from '@/src/firebase/functions/interface';
 import { AntDesign } from '@expo/vector-icons';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '@/src/firebase/config';
+
+
 
 export default function Config() {
+  const [novoEmail, setNovoEmail] = useState('');
+
+  const handleUpdate = async () => {
+    try {
+      let uid = verification().uid
+      const docRef = doc(db, 'Contas', uid); // Substitua 'sua_colecao' pelo nome da sua coleção
+      await updateDoc(docRef, {
+        email: novoEmail
+      });
+      alert('Campo atualizado com sucesso!');
+    } catch (error) {
+      console.error("Erro ao atualizar o documento: ", error);
+      alert('Erro ao atualizar o documento');
+    }
+  };
   return (
     <View style={styles.container_all}>
 

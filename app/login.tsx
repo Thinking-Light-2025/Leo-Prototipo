@@ -4,15 +4,16 @@ import { Link, useRouter } from 'expo-router';
 import { TxtInput } from '../src/components/objects';
 import { Botão } from '../src/components/objects';
 import { colors } from '@/src/components/global';
-import { width } from '@/src/firebase/functions/interface';
+import { verification, width } from '@/src/firebase/functions/interface';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/src/firebase/config';
-import { connectFirestoreEmulator } from 'firebase/firestore';
+import { auth, db } from '@/src/firebase/config';
+import { connectFirestoreEmulator, doc, updateDoc } from 'firebase/firestore';
 
 export default function Login() {
   const router = useRouter(); // Rotas
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [novoEmail, setNovoEmail] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   async function login() {
@@ -36,10 +37,18 @@ export default function Login() {
       }
   };
 
-  // const handleRecoveryPress = async () => {
-  //   const valueRecovery = { email };
-  //   await handleRecovery(valueRecovery);
-  // };
+  const handleUpdate = async () => {
+    try {
+      const docRef = doc(db, 'sua_colecao', verification().uid); // Substitua 'sua_colecao' pelo nome da sua coleção
+      await updateDoc(docRef, {
+        email: newValue
+      });
+      alert('Campo atualizado com sucesso!');
+    } catch (error) {
+      console.error("Erro ao atualizar o documento: ", error);
+      alert('Erro ao atualizar o documento');
+    }
+  };
 
   return (
     <View style={Style.container}>
@@ -57,6 +66,13 @@ export default function Login() {
           onChangeText={setEmail}
         />
         <Text style={Style.cardBottom_text}>Digite sua senha:</Text>
+        <TxtInput
+          placeholder="Senha"
+          placeholderTextColor={colors.tituloBranco}
+          secureTextEntry
+          value={novoEmail}
+          onChangeText={setNovoEmail}
+        />
         <TxtInput
           placeholder="Senha"
           placeholderTextColor={colors.tituloBranco}

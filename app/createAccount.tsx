@@ -16,26 +16,6 @@ export default function createAccount() {
   const router = useRouter(); // Inicializar o router
   const [tipoConta, setTipoConta] = useState('');
 
-  async function createUser() {
-      createUserWithEmailAndPassword(auth, email, password)
-          .then(value => {
-              console.log("Cadastrado com sucesso! \n" + value.user.uid);
-        
-              try {
-                const dadosConta = {
-                      uid: verification().uid,
-                      email: email,
-                };
-                addDoc(collection(db, 'Contas'), dadosConta);
-                Alert.alert('Concluído!', 'Conta criada');
-                router.replace('/(tabs)/Home/Home');
-              } catch {
-                console.error("Erro ao configurar no firestore!", Error)
-              }
-        })
-          .catch((error) => console.log(error.message)); // Corrigido aqui: melhor tratamento de erro
-  };
-
   const handleValueChange = (value) => {
     setTipoConta(value);
   };
@@ -72,8 +52,6 @@ export default function createAccount() {
             </Text>
           )}
         </View>
-
-
       </ScrollView>
     </View>
   );

@@ -11,47 +11,43 @@ import { View, Text, StyleSheet, Alert } from 'react-native';
 
 export const FormEmpresa = () => {
   const router = useRouter();
-  const [name, setName] = useState('');
-  const [cnpj , setCnpj] = useState('');
-  const [setor, setSetor] = useState('');
-  const [regiao, setRegiao] = useState('');
-  const [descricao, setDescricao] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [nomeEmpresa, setNomeEmpresa] = useState('');
+  const [ramoAtuacao, setRamoAtuacao] = useState('');
+  const [qtdFuncionarios, setQtdFuncionarios] = useState('');
+  const [cnpjEmpresa, setCnpjEmpresa] = useState('');
+  const [emialEmpresarial, setEmialEmpresarial] = useState('');
+  const [senha, setSenha] = useState('');
   const [confirmarPassword, setConfirmarPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   const onRegisterPress = async () => {
     setIsLoading(true);
-    if (!name || !email || !password || !descricao) {
+    if (!nomeEmpresa || !ramoAtuacao || !qtdFuncionarios || !cnpjEmpresa || !emialEmpresarial || !senha) {
       Alert.alert("Erro", "Por favor, preencha todos os campos."); 
-        if (password !== confirmarPassword) {
-          Alert.alert('As senhas não são iguais.')
-        }
     } 
-    if (password !== confirmarPassword) {
+    if (senha !== confirmarPassword) {
       Alert.alert('As senhas não são iguais.')
     }
     else {
     try {
-       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+       const userCredential = await createUserWithEmailAndPassword(auth, emialEmpresarial, senha);
        const uid = userCredential.user.uid;
        const tipo_conta = 'Empresa';
        const data = {
           uid: uid,
-          gmail: email,
-          name_conta: name,
-          password,
-          descricao,
-          cnpj,
-          setor,
+          nomeEmpresa,
+          ramoAtuacao,
+          qtdFuncionarios,
+          cnpjEmpresa,
+          emialEmpresarial,
+          senha,
           tipo_conta,
-          createdAt: new Date(),
+          dataPublicacao: new Date(),
        };
        const pessoasSubCollectionRef = doc(db, 'Contas', uid);
        await setDoc(pessoasSubCollectionRef, data);
        Alert.alert("Conta Criada com sucesso!");
-       router.replace('/(tabs)/dashboard');
+       router.replace('/(tabs)/Home/Home');
     } catch (error) {
        console.error("Erro ao criar a conta:", error);
        Alert.alert("Erro", "erro ao criar a conta");
@@ -67,8 +63,8 @@ export const FormEmpresa = () => {
           <View style={styles.containerMed_AreaInput}>
             <Text style={styles.containerMed_AreaInput_text}>Digite o nome da empresa:</Text>
             <TxtInput
-              value={name}
-              onChangeText={setName}
+              value={nomeEmpresa}
+              onChangeText={setNomeEmpresa}
               placeholder="..."
               placeholderTextColor={colors.amarelo2}
             />
@@ -76,35 +72,35 @@ export const FormEmpresa = () => {
           <View style={styles.containerMed_AreaInput}>
             <Text style={styles.containerMed_AreaInput_text}>Digite o seu gmail:</Text>
             <TxtInput
-              value={email}
-              onChangeText={setEmail}
+              value={ramoAtuacao}
+              onChangeText={setRamoAtuacao}
               placeholder="..."
               placeholderTextColor={colors.amarelo2}
             />
           </View>
           <View style={styles.containerMed_AreaInput}>
             <Text style={styles.containerMed_AreaInput_text}>Digite uma descrição sobre a empresa:</Text>
-            <TextArea 
-              value={descricao}
-              onChangeText={setDescricao}
+            <TxtInput 
+              value={qtdFuncionarios}
+              onChangeText={setQtdFuncionarios}
               placeholder='...'
               placeholderTextColor={colors.amarelo2}
             />
           </View>
           <View style={styles.containerMed_AreaInput}>
             <Text style={styles.containerMed_AreaInput_text}>Digite seu cnpj:</Text>
-            <TextArea 
-              value={cnpj}
-              onChangeText={setCnpj}
+            <TxtInput 
+              value={cnpjEmpresa}
+              onChangeText={setCnpjEmpresa}
               placeholder='...'
               placeholderTextColor={colors.amarelo2}
             />
           </View>          
           <View style={styles.containerMed_AreaInput}>
             <Text style={styles.containerMed_AreaInput_text}>Digite seu setor da empresa:</Text>
-            <TextArea 
-              value={setor}
-              onChangeText={setSetor}
+            <TxtInput 
+              value={emialEmpresarial}
+              onChangeText={setEmialEmpresarial}
               placeholder='...'
               placeholderTextColor={colors.amarelo2}
             />
@@ -112,8 +108,8 @@ export const FormEmpresa = () => {
           <View style={styles.containerMed_AreaInput}>
             <Text style={styles.containerMed_AreaInput_text}>Digite sua senha:</Text>
             <TxtInput
-              value={password}
-              onChangeText={setPassword}
+              value={senha}
+              onChangeText={setSenha}
               placeholder="..."
               secureTextEntry={true}
               placeholderTextColor={colors.amarelo2}
@@ -147,9 +143,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   containerMed: {
-    width: width * 1,
-    maxHeight: 900,
+    width: width * 0.9,
+    minHeight: 800,
+    padding: 4,
     alignItems: 'center',
+    justifyContent: 'center',
+    // backgroundColor: 'red',
   },
   containerMed_subTitle: {
     fontSize: 17,
@@ -158,7 +157,8 @@ const styles = StyleSheet.create({
   containerMed_AreaInput: {
     width: width * 0.9,
     maxHeight: 170,
-    marginTop: 10,
+    margin: 10,
+    marginLeft: 50,
     justifyContent: 'center',
   },
   containerMed_AreaInput_text: {

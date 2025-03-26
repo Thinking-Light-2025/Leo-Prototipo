@@ -24,7 +24,7 @@ export function BotãoInicio({ ...rest }: TouchableOpacityProps) {
   return (
     <TouchableOpacity
       style={{
-        width: '80%',
+        width: '90%',
         height: 50,
         backgroundColor: colors.amarelo2,
         borderRadius: 10,

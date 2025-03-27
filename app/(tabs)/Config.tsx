@@ -1,14 +1,11 @@
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import { ScrollView } from 'react-native-gesture-handler';
 import { colors } from '@/src/components/global';
 import { TxtInput, Botão } from '@/src/components/objects';
-import { height, verification, width } from '@/src/firebase/functions/interface';
-import { AntDesign } from '@expo/vector-icons';
+import { verification, width } from '@/src/firebase/functions/interface';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/src/firebase/config';
-
-
+import { AntDesign } from '@expo/vector-icons';
 
 export default function Config() {
   const [novoEmail, setNovoEmail] = useState('');
@@ -32,9 +29,8 @@ export default function Config() {
         <Text style={styles.Title}>Configurações</Text>
         <Text style={styles.subTitle}>Personalize sua experiençia</Text>
 
-        {/* <View style={styles.container_conf} >
+       <View style={styles.container_conf} >
 
-              <View style={styles.container_inputs} >
                   <Text style={styles.ViewBack2_Title}>Suporte</Text>
 
                   <View style={styles.ViewBack2_area}>
@@ -49,14 +45,13 @@ export default function Config() {
                       <Text style={styles.ViewBack2_area_text}>Enviar feedBack</Text>
                       <AntDesign name="caretright" size={24} colors={colors.amarelo2} />
                   </View>
-              </View>
+  
 
-        </View> */}
+        </View> 
 
         <View style={styles.container_alter}>
 
           <Text style={styles.container_alter_title}>Altere seus dados</Text>
-
             <View style={styles.container_alter_inputs}> 
                 <TxtInput></TxtInput>
                 <TxtInput></TxtInput>
@@ -64,9 +59,16 @@ export default function Config() {
                 <TxtInput></TxtInput>
                 <TxtInput></TxtInput>
             </View>
-
             <Botão></Botão>
 
+        </View>
+
+        <View style={styles.container_alter}>
+
+        <Botão>
+          <Text style={styles.fontButton}>Delete sua conta
+          </Text>
+        </Botão>
         </View>
 
     </View>
@@ -94,12 +96,13 @@ const styles = StyleSheet.create({
   },
 
   container_conf: {
-    width: width * 1,
-    height: 400,
+    width: width * 0.9,
+    minHeight: 300,
     alignItems: 'center',
     padding: 10,
+    borderRadius: 20,
+    backgroundColor: colors.fundo
   },
-
   container_inputs: {
     width: width * 0.9,
     minHeight: 20,
@@ -109,7 +112,7 @@ const styles = StyleSheet.create({
   ViewBack2_Title: {
     fontSize: 34,
     color: colors.amarelo2,
-    fontWeight: '500',
+    fontWeight: '600',
   },
   ViewBack2_area: {
     width: width * 0.8,
@@ -131,11 +134,12 @@ const styles = StyleSheet.create({
   container_alter: 
   {
     width: width * 0.9,
-    minHeight: 400,
+    minHeight: 80,
     alignItems: 'center',
     backgroundColor: colors.fundo,
     borderRadius: 15,
     padding: 10,
+    marginTop: 20,
   },
   container_alter_title: 
   {
@@ -150,6 +154,11 @@ const styles = StyleSheet.create({
     minHeight: 200,
     paddingBlock: 10,
     alignItems: 'center',
+  },
+  fontButton: {
+    fontSize: 20,
+    color: 'red',
+    fontWeight: '800'
   },
 
 }) 

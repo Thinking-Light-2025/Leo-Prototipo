@@ -84,6 +84,7 @@ export function TxtInput({ ...rest }: TextInputProps) {
         color: 'white',
         borderWidth: 1.2,
         borderRadius: 8,
+        marginTop: 10,
         fontSize: 16,
 
       }}

@@ -95,7 +95,7 @@ export default function Geral() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.fundo,
+    backgroundColor: colors.preto,
 
   },
   containerTop: {
